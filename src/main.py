@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QGridLayout, QVBoxLayout, QPushButton
-from PyQt5.QtCore import pyqtSlot, QObject, Qt
+from PyQt5.QtCore import pyqtSlot, QObject, Qt, Qthread
 import sys
 import serial
 import random
 from grid import Grid
+from acquisition import AcquisitionWorker
 
 
 class MyWindow(QMainWindow):
@@ -12,11 +13,11 @@ class MyWindow(QMainWindow):
 
     def __init__(self):
         super(MyWindow, self).__init__()
-        self.setGeometry(100, 100, 1280, 1000)
+        self.setGeometry(100, 100, 1280, 720)
         self.setWindowTitle('EOG Calibration')
-        self.initUI()
+        self.setupUI()
 
-    def initUI(self):
+    def setupUI(self):
         # self.grid = QGridLayout(self)    
         # for i in range(0, 3):
         #     for j in range(0, 3):
@@ -54,18 +55,24 @@ class MyWindow(QMainWindow):
         self.active_cell[1] = random.choice([0, 1, 2])
         print(self.active_cell)
 
-    # def create_grid(self):
-    #     self.grid = QGridLayout(self)    
+    def getData(self, ch1, ch2):
+        print(f'>> ch1: {ch1} ch2: {ch2}')
 
-    #     for i in range(0, 3):
-    #         for j in range(0, 3):
-    #             self.tile = QLabel(' ', self)
-    #             if (i == self.active_cell[0] and j == self.active_cell[1]):
-    #                 self.tile.setStyleSheet('background-color: red')
-    #             else:
-    #                 self.tile.setStyleSheet(f'background-color: grey') # random.choice(colors)}
-    #             self.grid.addWidget(self.tile, i, j)
+    def start_acquisition(self):
+        self.thread = QThread()
+        self.worker = AcquisitionWorker()
+        self.worker.moveToThread(self.thread)
 
+        self.worker.run_thread = True
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        # Spaja se signal koji prenosi informacije tokom ozvrsavanja same 
+        # funkcije unutar "radnika"
+        self.worker.progress.connect(self.getData)
+
+        self.thread.start()
 
 
 def main():

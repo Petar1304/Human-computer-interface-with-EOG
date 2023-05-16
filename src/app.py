@@ -3,14 +3,14 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
 class MyWindow(QMainWindow):
-    
+
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setGeometry(100, 100, 1280, 720)
         self.setWindowTitle('EOG Calibration')
-        self.initUI()
+        self.setupUI()
 
-    def initUI(self):
+    def setupUI(self):
         self.label = QtWidgets.QLabel(self)
         self.label.setText("Label")
         self.label.move(100, 100)
