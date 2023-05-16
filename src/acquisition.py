@@ -32,6 +32,7 @@ class AcquisitionWorker(QObject):
             # emmiting signal
             self.data.emit(data)
         '''
+        # testing
         i = 0
         j = 1
         while True:
@@ -39,7 +40,7 @@ class AcquisitionWorker(QObject):
             self.data.emit(i, j)
             i += 1
             j += 1
-
+        
 
 
 

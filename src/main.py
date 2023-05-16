@@ -70,8 +70,6 @@ class MyWindow(QMainWindow):
         self.thread.finished.connect(self.thread.deleteLater)
         # connecting to slot
         self.worker.data.connect(self.getData)
-
-
         self.thread.start()
 
 
