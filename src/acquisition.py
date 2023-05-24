@@ -8,7 +8,7 @@ class AcquisitionWorker(QObject):
     def __init__(self):
         super().__init__()
         # port for arduino
-        self.port = 'dev/tty/ACM0'
+        self.port = 'dev/ttyUSB0'
 
     def open_serial(self):
         com_port = self.port
@@ -24,7 +24,7 @@ class AcquisitionWorker(QObject):
         return data
 
     def run(self):
-        '''
+        # '''
         ser = self.open_serial()
         while(True):
             arduino_data = ser.readline().decode()
@@ -40,7 +40,7 @@ class AcquisitionWorker(QObject):
             self.data.emit(i, j)
             i += 1
             j += 1
-        
+        '''
 
 
 

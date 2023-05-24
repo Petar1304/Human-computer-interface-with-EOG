@@ -15,10 +15,10 @@ def runCommand(command):
     stride = 50 # number of pixels to move
     timestamp = 0.2 # seconds
 
-    if command == 'LEFT':
+    if command == 'RIGHT':
         pyautogui.dragRel(stride, 0, duration=timestamp)
 
-    elif command == 'RIGHT':
+    elif command == 'LEFT':
         pyautogui.dragRel(-stride, 0, duration=timestamp)
 
     elif command == 'UP':
@@ -28,6 +28,11 @@ def runCommand(command):
         pyautogui.dragRel(0, stride, duration=timestamp)
 
     elif command == 'CLICK':
-        pos = pyautogui.position()
-        pyautogui.leftClick(pos.x, pos.y)
+        # pos = pyautogui.position()
+        pyautogui.leftClick()
 
+# print('Moving')
+# time.sleep(0.5)
+# pyautogui.dragRel(0, 500, duration=1)
+# pyautogui.leftClick()
+# print('done')
