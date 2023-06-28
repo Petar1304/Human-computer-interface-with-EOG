@@ -1,5 +1,9 @@
 
-
+String data;
+int brojac = 0;
+int sumValue = 0;
+float value = 0;
+int n = 10;
 
 // the setup routine runs once when you press reset:
 void setup() {
@@ -9,10 +13,22 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-  String data = "";
+  data = "";
   // read the input on analog pin 0:
   int ch1 = analogRead(A0);
   // int ch2 = analogRead(A1);
+
+  /*
+  sumValue += ch1;
+  brojac++;
+  if (brojac == n) {
+    data = "";
+    brojac = 0;
+    value = sumValue / n;
+    data.concat(String(value));
+    Serial.println(data);
+  }
+  */
 
   data.concat(String(ch1));
   // data.concat(',');
@@ -20,5 +36,5 @@ void loop() {
 
   // print out the value you read:
   Serial.println(data);
-  delay(1);        // delay in between reads for stability
+  delay(10);        // delay in between reads for stability
 }

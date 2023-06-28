@@ -16,23 +16,23 @@ def runCommand(command):
     timestamp = 0.2 # seconds
 
     if command == 'RIGHT':
-        pyautogui.dragRel(stride, 0, duration=timestamp)
-
+        pyautogui.moveRel(stride, 0, duration=timestamp)
+    
     elif command == 'LEFT':
-        pyautogui.dragRel(-stride, 0, duration=timestamp)
+        pyautogui.moveRel(-stride, 0, duration=timestamp)
 
     elif command == 'UP':
-        pyautogui.dragRel(0, -stride, duration=timestamp)
+        pyautogui.moveRel(0, -stride, duration=timestamp)
 
     elif command == 'DOWN':
-        pyautogui.dragRel(0, stride, duration=timestamp)
+        pyautogui.moveRel(0, stride, duration=timestamp)
 
     elif command == 'CLICK':
         # pos = pyautogui.position()
         pyautogui.leftClick()
 
-# print('Moving')
-# time.sleep(0.5)
-# pyautogui.dragRel(0, 500, duration=1)
-# pyautogui.leftClick()
-# print('done')
+# testing
+# while True:
+#     runCommand('RIGHT')
+#     runCommand('CLICK')
+#     time.sleep(1)

@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 import sys, time
+import serial
 
 class AcquisitionWorker(QObject):
     # channels from eog (up/down and left/right movement)
@@ -8,7 +9,7 @@ class AcquisitionWorker(QObject):
     def __init__(self):
         super().__init__()
         # port for arduino
-        self.port = 'dev/ttyUSB0'
+        self.port = '/dev/ttyUSB0'
 
     def open_serial(self):
         com_port = self.port
@@ -27,10 +28,12 @@ class AcquisitionWorker(QObject):
         # '''
         ser = self.open_serial()
         while(True):
-            arduino_data = ser.readline().decode()
-            data = self.process_data(arduino_data)
+            # arduino_data = ser.readline().decode()
+            arduino_data = ser.readline()
+            print(arduino_data.decode(encoding='ascii', errors='ignore'))
+            # data = self.process_data(arduino_data)
             # emmiting signal
-            self.data.emit(data)
+            # self.data.emit(arduino_data)
         '''
         # testing
         i = 0
