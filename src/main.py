@@ -6,7 +6,6 @@ import random
 from grid import Grid
 from acquisition import AcquisitionWorker
 
-
 class MyWindow(QMainWindow):
     # global variable
     active_cell = [1, 2]
@@ -19,21 +18,6 @@ class MyWindow(QMainWindow):
         self.setupUI()
 
     def setupUI(self):
-        # self.grid = QGridLayout(self)    
-        # for i in range(0, 3):
-        #     for j in range(0, 3):
-        #         self.tile = QLabel(' ', self)
-        #         if (i == self.active_cell[0] and j == self.active_cell[1]):
-        #             self.tile.setStyleSheet('background-color: red')
-        #         else:
-        #             self.tile.setStyleSheet(f'background-color: grey') # random.choice(colors)}
-        #         self.grid.addWidget(self.tile, i, j)
-
-        # self.create_grid()
-
-        # self.layout = QVBoxLayout()
-        # self.layout.addWidget(Grid(self.active_cell))
-
         self.grid = Grid(self.active_cell)
 
         self.button = QPushButton('next', self)
@@ -71,7 +55,6 @@ class MyWindow(QMainWindow):
         # connecting to slot
         self.worker.data.connect(self.getData)
         self.thread.start()
-
 
 def main():
     app = QApplication(sys.argv)

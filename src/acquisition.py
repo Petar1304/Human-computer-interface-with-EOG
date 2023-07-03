@@ -25,15 +25,14 @@ class AcquisitionWorker(QObject):
         return data
 
     def run(self):
-        # '''
         ser = self.open_serial()
         while(True):
-            # arduino_data = ser.readline().decode()
             arduino_data = ser.readline()
             print(arduino_data.decode(encoding='ascii', errors='ignore'))
-            # data = self.process_data(arduino_data)
+            data = self.process_data(arduino_data)
             # emmiting signal
-            # self.data.emit(arduino_data)
+            self.data.emit(data)
+        
         '''
         # testing
         i = 0
@@ -45,7 +44,19 @@ class AcquisitionWorker(QObject):
             j += 1
         '''
 
+    def analyze(data):
+        ch1, ch2 = data
+        # load thresholds
+        th1, th2 = getThresholds()
 
+        command = ''
+        # analyze signal
+        if ch1 >= th1:
+            command = ''
+        if ch2 >= th2:
+            command = ''
+
+        return command
 
 
 
