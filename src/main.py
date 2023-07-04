@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QGridLayout, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QGridLayout, QVBoxLayout, QPushButton, QMenuBar
 from PyQt5.QtCore import pyqtSlot, QObject, Qt, QThread
 import sys
 import serial
@@ -18,8 +18,10 @@ class MyWindow(QMainWindow):
         self.setupUI()
 
     def setupUI(self):
-        self.grid = Grid(self.active_cell)
+        # self.grid = Grid(self.active_cell)
 
+        self.menuBar = self.createMenuBar()
+        
         self.button = QPushButton('next', self)
         self.button.setStyleSheet('background-color: orange; color: green')
         self.button.clicked.connect(self.change_cell)
@@ -27,8 +29,15 @@ class MyWindow(QMainWindow):
 
         # self.layout.addWidget(self.button)
         # self.widget = QWidget()
-        self.setCentralWidget(self.grid)
+        # self.setCentralWidget(self.grid)
         # self.setLayout(self.grid)
+
+    def createMenuBar(self):
+        menuBar = QMenuBar(self)
+        menuBar.addMenu('Calibrate')
+        menuBar.addMenu('Record')
+        menuBar.addMenu('Use')
+        return menuBar
 
 
     def keyPressEvent(self, e):

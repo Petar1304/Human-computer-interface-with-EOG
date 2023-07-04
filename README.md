@@ -4,6 +4,7 @@
     - calibrate
     - get data from arduino
     - connect eog eye position data with position on screen
+    - try KNN for getting command (needs data)
 
 ### TODO:
     - menu (calibrate, controlMouse, startAcquisition)
