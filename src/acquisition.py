@@ -5,8 +5,11 @@ PORT = '/dev/ttyUSB0'
 
 def open_serial():
     baud_rate = 9600
-    ser = serial.Serial(PORT, baud_rate)
-    return ser
+    try:
+        ser = serial.Serial(PORT, baud_rate)
+        return ser
+    except:
+        print("Couldn't establish connection with Arduino")
 
 def process_data(data):
     data_list = data.strip().split(',')
@@ -16,6 +19,9 @@ def process_data(data):
     return data
 
 def readData():
+    '''
+    returns data in a list [ch1, ch2]
+    '''
     ser = open_serial()
     arduino_data = ser.readline()
     data = process_data(arduino_data.decode(encoding='ascii', errors='ignore'))

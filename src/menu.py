@@ -1,4 +1,4 @@
-
+from calibration import calibrate
 
 
 while True:
@@ -9,4 +9,10 @@ while True:
     3) quit
     ''')
     command = input('Enter Command\n>> ')
-    if command == '3': break 
+    if command == '1':
+        calibrate()
+    elif command == '2':
+        pass
+    elif command == '3': break
+    else:
+        print('Wrong command')

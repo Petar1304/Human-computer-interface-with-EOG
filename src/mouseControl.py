@@ -27,12 +27,6 @@ def runCommand(commands):
     elif axis2_com == 'DOWN':
         pyautogui.moveRel(0, stride, duration=timestamp)
 
-    # elif command == 'CLICK':
-        # pos = pyautogui.position()
-        # pyautogui.leftClick()
-
-# testing
-# while True:
-#     runCommand('RIGHT')
-#     runCommand('CLICK')
-#     time.sleep(1)
+    elif command == 'CLICK':
+        pos = pyautogui.position()
+        pyautogui.leftClick()
