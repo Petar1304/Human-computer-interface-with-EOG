@@ -1,5 +1,6 @@
 import numpy as np
 import neurokit2
+from acquisition import readData
 
 def analyze(data):
     ch1, ch2 = data
@@ -30,14 +31,9 @@ def readThresholds():
         data = f.read()
         return [float(val) for val in data.split(',')]
 
+def useMouse():
+    while True:
+        data = readData()
+        command = analyze(data)
+        runCommand(command)
 
-'''
-(ch1, ch2)  |   command
--------------------------
-(0, 0)          none
-ch1 > th1
-ch1 < th1
-ch2 > th2
-ch2 < th2
-
-'''
