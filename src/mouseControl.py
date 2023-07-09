@@ -11,21 +11,22 @@ import pyautogui
 
 pyautogui.FAILSAFE = False
 
+# HYPERPARAMETERS
+STRIDE = 50 # number of pixels to move
+DURATION = 0.01 # seconds
+
 def runCommand(commands):
     axis1_com, axis2_com = commands
     
-    stride = 50 # number of pixels to move
-    timestamp = 0.2 # seconds
-
     if axis1_com == 'RIGHT':
-        pyautogui.moveRel(stride, 0, duration=timestamp)
+        pyautogui.moveRel(STRIDE, 0, duration=DURATION)
     elif axis1_com == 'LEFT':
-        pyautogui.moveRel(-stride, 0, duration=timestamp)
+        pyautogui.moveRel(-STRIDE, 0, duration=DURATION)
 
     if axis2_com == 'UP':
-        pyautogui.moveRel(0, -stride, duration=timestamp)
+        pyautogui.moveRel(0, -STRIDE, duration=DURATION)
     elif axis2_com == 'DOWN':
-        pyautogui.moveRel(0, stride, duration=timestamp)
+        pyautogui.moveRel(0, STRIDE, duration=DURATION)
 
     elif command == 'CLICK':
         pos = pyautogui.position()

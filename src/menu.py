@@ -16,3 +16,4 @@ while True:
     elif command == '3': break
     else:
         print('Wrong command')
+

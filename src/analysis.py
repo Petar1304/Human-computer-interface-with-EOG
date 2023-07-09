@@ -1,5 +1,4 @@
 import numpy as np
-import neurokit2
 from acquisition import readData
 
 def analyze(data):
