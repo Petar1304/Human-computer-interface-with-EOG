@@ -1,5 +1,8 @@
 import numpy as np
 from acquisition import readData
+import neurokit2 as nk
+from mouseControl import runCommand
+import time
 
 def analyze(data):
     ch1, ch2 = data
@@ -25,12 +28,13 @@ def analyze(data):
     return command
 
 def readThresholds():
-    inputFile = 'data/thresholds.txt'
+    inputFile = './data/thresholds.csv'
     with open(inputFile, 'r') as f:
         data = f.read()
         return [float(val) for val in data.split(',')]
 
 def useMouse():
+    
     while True:
         data = readData()
         command = analyze(data)

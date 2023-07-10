@@ -24,7 +24,7 @@ def readThresholds():
         return [float(val) for val in data.split(',')]
 
 def saveThresholds(th1_right, th1_left, th2_up, th2_down):
-    outputFile = 'data/thresholds.txt'
+    outputFile = './data/thresholds.csv'
     with open(outputFile, 'w') as f:
         f.write(f'{th1_right},{th1_left},{th2_up},{th2_down}')
 
@@ -65,4 +65,3 @@ def calibrate():
         thresholds.append(findThreshold(data, direction)) 
     if len(thresholds) == 4:
         saveThresholds(*thresholds)
-
